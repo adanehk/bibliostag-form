@@ -58,12 +58,13 @@ def registro():
     cursor = db.cursor()
 
     sql = """
-        INSERT INTO registro 
-        (fecha, nombre, apellido, dni, telefono, empresa, tipo, detalle, documentacion, prioridad, archivos)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-    """
+INSERT INTO registro (fecha, nombre, apellido, dni, telefono, empresa, tipo, detalle, documentacion, prioridad, archivo)
+VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+"""
 
-    valores = (fecha, nombre, apellido, dni, telefono, empresa, tipo, detalle, documentacion, prioridad, archivos_guardados)
+
+    valores = (fecha, nombre, apellido, dni, telefono, empresa, tipo, detalle, documentacion, prioridad, archivo)
+
 
     cursor.execute(sql, valores)
     db.commit()
