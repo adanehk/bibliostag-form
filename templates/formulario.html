@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solicitud, Ausencia, Reclamación o Sugerencia</title>
+<style>
+  body {
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: #f6f8fa;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 800px;
+    background: #fff;
+    padding: 30px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  p.description {
+    text-align: center;
+    color: #555;
+    margin-bottom: 30px;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin: 15px 0 5px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+  }
+
+  input[type="file"] {
+    margin-top: 8px;
+  }
+
+  .checkbox-group,
+  .radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .checkbox-group label,
+  .radio-group label {
+    font-weight: normal;
+  }
+
+  .urgency {
+    background: #f0f7ff;
+    padding: 10px;
+    border-radius: 6px;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    margin-top: 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #005fa3;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    margin-top: 25px;
+  }
+
+  @media (max-width: 600px) {
+    .checkbox-group, .radio-group {
+      flex-direction: column;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Solicitud, Ausencia, Reclamación o Sugerencia</h1>
+  <p class="description">
+    Este formulario tiene como finalidad registrar formalmente cualquier petición, incidencia o sugerencia relacionada con la actividad laboral.
+  </p>
+
+  <!-- FORMULARIO COMPATIBLE CON FLASK -->
+  <form action="/registro" method="post" enctype="multipart/form-data">
+
+    <label for="fecha">Fecha *</label>
+    <input type="date" id="fecha" name="fecha" required>
+
+    <label for="nombre">Nombre *</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="apellido">Apellido *</label>
+    <input type="text" id="apellido" name="apellido" required>
+
+    <label for="dni">DNI *</label>
+    <input type="text" id="dni" name="dni" required>
+
+    <label for="telefono">Número de teléfono *</label>
+    <input type="tel" id="telefono" name="telefono" required>
+
+    <label>Empresa en la que trabaja *</label>
+    <div class="checkbox-group">
+      <label><input type="radio" name="empresa" value="Artea"> Artea</label>
+      <label><input type="radio" name="empresa" value="Ballonti"> Ballonti</label>
+      <label><input type="radio" name="empresa" value="Itaroa"> Itaroa</label>
+      <label><input type="radio" name="empresa" value="La Morea"> La Morea</label>
+      <label><input type="radio" name="empresa" value="Max Center"> Max Center</label>
+      <label><input type="radio" name="empresa" value="Megapark"> Megapark</label>
+      <label><input type="radio" name="empresa" value="Valle Real"> Valle Real</label>
+      <label><input type="radio" name="empresa" value="Zubiarte"> Zubiarte</label>
+      <label><input type="radio" name="empresa" value="Otra"> Otra</label>
+    </div>
+
+    <label>Tipo de registro *</label>
+    <div class="radio-group">
+      <label><input type="radio" name="tipo" value="Petición / Solicitud" required> Petición / Solicitud</label>
+      <label><input type="radio" name="tipo" value="Reclamación"> Reclamación</label>
+      <label><input type="radio" name="tipo" value="Otro"> Otro</label>
+    </div>
+
+    <label for="detalle">¿Qué ocurrió / Qué solicita? *</label>
+    <textarea id="detalle" name="detalle" rows="4" required></textarea>
+
+    <label>Evidencia y documentación *</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" name="documentacion" value="Documento"> Documento</label>
+      <label><input type="checkbox" name="documentacion" value="Parte médico"> Parte médico</label>
+      <label><input type="checkbox" name="documentacion" value="Otro"> Otro</label>
+    </div>
+
+    <label class="urgency">Urgencia y prioridad *</label>
+    <div class="radio-group">
+      <label><input type="radio" name="prioridad" value="Baja" required> Baja (respuesta < 15 días)</label>
+      <label><input type="radio" name="prioridad" value="Media"> Media (respuesta < 7 días)</label>
+      <label><input type="radio" name="prioridad" value="Alta"> Alta (respuesta < 48h)</label>
+    </div>
+
+    <label for="archivo">Adjunte documentación (máx. 3 archivos de 100MB)</label>
+    <input type="file" id="archivo" name="archivo" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,image/*,video/*,audio/*">
+
+    <button type="submit">Enviar Solicitud</button>
+  </form>
+
+  <footer>
+    © 2026 | Gestión Interna de Solicitudes. Confidencial y protegido según normativa vigente.
+  </footer>
+</div>
+
+</body>
+</html>
