@@ -15,11 +15,13 @@ if not os.path.exists(UPLOAD_FOLDER):
 # Conexión a MySQL
 def conectar():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",      # cambia si tu usuario es otro
-        password="root",      # pon tu contraseña si tienes
-        database="solicitudes"
+        host="trolley.proxy.rlwy.net",
+        user="root",
+        password="TAwCngqaDeGFtlrVVWpFTzphoVcYbrbe",
+        database="railway",
+        port=11478
     )
+
 
 @app.route("/")
 def formulario():
